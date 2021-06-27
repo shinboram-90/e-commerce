@@ -15,16 +15,12 @@ require 'faker'
 puts "Cleaning database..."
 Product.destroy_all
 Category.destroy_all
-Vendor.destroy_all
 User.destroy_all
 Order.destroy_all
 OrderItem.destroy_all
 Review.destroy_all
 Cart.destroy_all
 CartItem.destroy_all
-
-
-# sku = [ ('a'…'z').to_a, ('A'…'Z').to_a, (0…9).to_a ].flatten
 
 10.times do
 
@@ -34,14 +30,6 @@ category = Category.new(
   description: Faker::Commerce
 )
 category.save!
-
-puts "Creating vendors..."
-
-vendor = Vendor.new(
-  name:Faker::Creature::Animal.name,
-  description: Faker::ChuckNorris.fact
-)
-vendor.save!
   
 puts "Creating products..."
 product = Product.new(
@@ -49,8 +37,7 @@ product = Product.new(
   description: Faker::Games::Pokemon.move,
   price: "Faker::Commerce.price",
   sku: Faker::Code.nric,
-  category: category,
-  vendor: vendor
+  category: category
 )
 product.save!
 
@@ -65,7 +52,6 @@ user = User.new(
   mobile: Faker::PhoneNumber.cell_phone,
 )
 user.save!
-
 
 puts "Creating adresses..."
 address = Address.new(

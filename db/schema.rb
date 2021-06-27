@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
 
   create_table "cart_items", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "price"
+    t.float "price"
     t.integer "cart_id", null: false
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
   end
 
   create_table "carts", force: :cascade do |t|
-    t.integer "total"
+    t.integer "total", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -52,8 +52,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
 
   create_table "order_items", force: :cascade do |t|
     t.integer "quantity"
-    t.decimal "price"
-    t.text "content"
+    t.float "price"
     t.integer "order_id", null: false
     t.integer "product_id", null: false
     t.datetime "created_at", precision: 6, null: false
@@ -75,13 +74,11 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
     t.string "name"
     t.text "description"
     t.string "sku"
-    t.decimal "price"
+    t.float "price"
     t.integer "category_id", null: false
-    t.integer "vendor_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_products_on_category_id"
-    t.index ["vendor_id"], name: "index_products_on_vendor_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -112,13 +109,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  create_table "vendors", force: :cascade do |t|
-    t.string "name"
-    t.text "description"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   add_foreign_key "addresses", "users"
   add_foreign_key "cart_items", "carts"
   add_foreign_key "cart_items", "products"
@@ -127,7 +117,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
   add_foreign_key "order_items", "products"
   add_foreign_key "orders", "users"
   add_foreign_key "products", "categories"
-  add_foreign_key "products", "vendors"
   add_foreign_key "reviews", "products"
   add_foreign_key "reviews", "users"
 end
