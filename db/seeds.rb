@@ -87,7 +87,8 @@ review = Review.new(
   user: user,
   product: product,
   title: Faker::Hacker.adjective,
-  rating: Faker::Number.between(from: 1, to: 5)
+  rating: Faker::Number.between(from: 1, to: 5),
+  content: Faker::Lorem.paragraph 
 )
 review.save!
 
@@ -105,7 +106,6 @@ cart_item = CartItem.new(
   quantity: rand(0..3)
 )
 cart_item.save!
-
 end
 
 
