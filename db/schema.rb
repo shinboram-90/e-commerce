@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
     t.string "city"
     t.string "postal_code"
     t.string "country"
-    t.string "mobile"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -65,7 +64,7 @@ ActiveRecord::Schema.define(version: 2021_06_27_080143) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "status"
-    t.integer "total"
+    t.integer "total", default: 0
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

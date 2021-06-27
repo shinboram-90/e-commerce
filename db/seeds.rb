@@ -66,6 +66,17 @@ user = User.new(
 )
 user.save!
 
+
+puts "Creating adresses..."
+address = Address.new(
+  user: user,
+  address_line1: Faker::Address.street_address,
+  city: Faker::Address.city,
+  postal_code: Faker::Address.zip_code,
+  country: Faker::Address.country
+)
+address.save!
+
 puts "Creating orders..."
 order = Order.new(
   user: user,
