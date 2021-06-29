@@ -35,7 +35,7 @@ puts "Creating products..."
 product = Product.new(
   name: Faker::Games::Pokemon.name,
   description: Faker::Games::Pokemon.move,
-  price: "Faker::Commerce.price",
+  price: Faker::Commerce.price,
   sku: Faker::Code.nric,
   category: category
 )
